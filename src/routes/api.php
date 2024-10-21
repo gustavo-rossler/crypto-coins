@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoinsController;
 use Illuminate\Http\Request;
 
 /*
@@ -20,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/', function() {
     return  'OK';
 });
+
+Route::get('/coins', [CoinsController::class, 'list']);
