@@ -1,0 +1,86 @@
+volumes:
+  mysql-volume:
+    driver: local
+
+networks:
+  crypto-coins-network:
+    name: ${API_NAME}-network
+
+services:
+  api:
+    container_name: ${API_NAME}-api
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - ${API_NAME}-network
+    ports:
+      - '9000:9000'
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+  composer:
+    container_name: ${API_NAME}-composer
+    build:
+      context: .
+      dockerfile: composer.dockerfile
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - ${API_NAME}-network
+    depends_on:
+      api:
+        condition: service_started
+      db:
+        condition: service_healthy
+
+  artisan:
+    container_name: ${API_NAME}-artisan
+    build:
+      context: .
+      dockerfile: artisan.dockerfile
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      api:
+        condition: service_started
+      composer:
+        condition: service_completed_successfully
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '8009:8000'
+    networks:
+      - ${API_NAME}-network
+
+  db:
+    image: mysql:5.7
+    container_name: ${API_NAME}-db
+    restart: always
+    ports:
+      - '33036:3306'
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: crypto_coins
+      MYSQL_ROOT_PASSWORD: wealth99-secret-1
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    networks:
+      - ${API_NAME}-network
