@@ -19,31 +19,112 @@ class CoinSeeder extends Seeder
                 'name' => 'Bitcoin',
             ],
             [
-                'id' => '',
-                'symbol' => '',
-                'name' => '',
-            ],
-            [
-                'id' => 'binance-peg-bitcoin-cash',
+                'id' => 'bitcoin-cash',
                 'symbol' => 'bch',
-                'name' => 'Binance-Peg Bitcoin Cash',
+                'name' => 'Bitcoin Cash',
             ],
             [
-                'id' => 'binance-peg-litecoin',
+                'id' => 'litecoin',
                 'symbol' => 'ltc',
-                'name' => 'Binance-Peg Litecoin',
+                'name' => 'Litecoin',
             ],
             [
-                'id' => 'bridged-binance-peg-ethereum-opbnb',
+                'id' => 'ethereum',
                 'symbol' => 'eth',
-                'name' => 'Bridged Binance-Peg Ethereum (opBNB)',
+                'name' => 'Ethereum',
             ],
             [
-                'id' => '',
-                'symbol' => '',
-                'name' => '',
+                'id' => 'dacxi',
+                'symbol' => 'dacxi',
+                'name' => 'Dacxi',
+            ],
+            [
+                'id' => 'chainlink',
+                'symbol' => 'link',
+                'name' => 'Chainlink',
+            ],
+            [
+                'id' => 'tether',
+                'symbol' => 'usdt',
+                'name' => 'Tether',
+            ],
+            [
+                'id' => 'stellar',
+                'symbol' => 'xlm',
+                'name' => 'Stellar',
+            ],
+            [
+                'id' => 'polkadot',
+                'symbol' => 'dot',
+                'name' => 'Polkadot',
+            ],
+            [
+                'id' => 'cardano',
+                'symbol' => 'ada',
+                'name' => 'Cardano',
+            ],
+            [
+                'id' => 'solana',
+                'symbol' => 'sol',
+                'name' => 'Solana',
+            ],
+            [
+                'id' => 'avalanche-2',
+                'symbol' => 'avax',
+                'name' => 'Avalanche',
+            ],
+            [
+                'id' => 'terra-luna',
+                'symbol' => 'lunc',
+                'name' => 'Terra Luna Classic',
+            ],
+            [
+                'id' => 'matic-network',
+                'symbol' => 'matic',
+                'name' => 'Polygon',
+            ],
+            [
+                'id' => 'usd-coin',
+                'symbol' => 'usdc',
+                'name' => 'USDC',
+            ],
+            [
+                'id' => 'binancecoin',
+                'symbol' => 'bnb',
+                'name' => 'BNB',
+            ],
+            [
+                'id' => 'ripple',
+                'symbol' => 'xrp',
+                'name' => 'XRP',
+            ],
+            [
+                'id' => 'uniswap',
+                'symbol' => 'uni',
+                'name' => 'Uniswap',
+            ],
+            [
+                'id' => 'maker',
+                'symbol' => 'mkr',
+                'name' => 'Maker',
+            ],
+            [
+                'id' => 'basic-attention-token',
+                'symbol' => 'bat',
+                'name' => 'Basic Attention',
+            ],
+            [
+                'id' => 'the-sandbox',
+                'symbol' => 'sand',
+                'name' => 'The Sandbox',
+            ],
+            [
+                'id' => 'eos',
+                'symbol' => 'eos',
+                'name' => 'EOS',
             ],
         ];
+        Coin::truncate();
         Coin::insert($data);
     }
 }
