@@ -9,7 +9,6 @@ networks:
 services:
   api:
     container_name: ${API_NAME}-api
-    user: ${CURRENT_HOST_USER}
     build:
       context: .
       dockerfile: php.dockerfile
@@ -44,7 +43,6 @@ services:
 
   artisan:
     container_name: ${API_NAME}-artisan
-    user: ${CURRENT_HOST_USER}
     build:
       context: .
       dockerfile: artisan.dockerfile
