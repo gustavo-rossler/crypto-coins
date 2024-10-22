@@ -14,11 +14,11 @@ class CreateCoinsTable extends Migration
     public function up()
     {
         Schema::create('coins', function (Blueprint $table) {
-            $table->string('id');
-            $table->string('name');
-            $table->string('symbol');
+            $table->string('api_id', 30)->primary();
+            $table->string('name', 100);
+            $table->string('symbol', 30);
 
-            $table->primary('id');
+            $table->index('symbol');
         });
     }
 
