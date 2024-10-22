@@ -1,6 +1,6 @@
 <?php
 
-use App\Coin;
+use App\CryptoCoin;
 use Illuminate\Database\Seeder;
 
 class CoinSeeder extends Seeder
@@ -124,7 +124,7 @@ class CoinSeeder extends Seeder
                 'name' => 'EOS',
             ],
         ];
-        Coin::truncate();
-        Coin::insert($data);
+        CryptoCoin::truncate();
+        CryptoCoin::insert($data);
     }
 }

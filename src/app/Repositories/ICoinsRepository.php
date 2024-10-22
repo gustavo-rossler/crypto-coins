@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
-use App\Coin;
+use App\CryptoCoin;
 
 interface ICoinsRepository
 {
@@ -16,14 +16,14 @@ interface ICoinsRepository
     /**
      * Get a coin by its ID
      * @param string $id
-     * @return \App\Coin|null
+     * @return \App\CryptoCoin|null
      */
-    public function getById(string $id): Coin;
+    public function getById(string $id): CryptoCoin;
 
     /**
      * Get a coin by its symbol
      * @param string $symbol
-     * @return \App\Coin|null
+     * @return \App\CryptoCoin|null
      */
-    public function getBySymbol(string $symbol): Coin;
+    public function getBySymbol(string $symbol): CryptoCoin;
 }

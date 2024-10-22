@@ -22,4 +22,4 @@ Route::get('/', function() {
     return  'OK';
 });
 
-Route::get('/coins', [CoinsController::class, 'list']);
+Route::get('/crypto-coins', [CoinsController::class, 'list']);

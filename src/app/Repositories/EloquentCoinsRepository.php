@@ -3,28 +3,28 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
-use App\Coin;
+use App\CryptoCoin;
 use PhpParser\Error;
 
 class EloquentCoinsRepository implements ICoinsRepository
 {
     public function getAll(): Collection
     {
-        return Coin::all();
+        return CryptoCoin::all();
     }
 
-    public function getById(string $id): Coin
+    public function getById(string $id): CryptoCoin
     {
-        $coin = Coin::find($id);
+        $coin = CryptoCoin::find($id);
         if (!$coin) {
             throw new Error(sprintf('Coin with ID %s not found', $id));
         }
         return $coin;
     }
 
-    public function getBySymbol(string $symbol): Coin
+    public function getBySymbol(string $symbol): CryptoCoin
     {
-        $coin = Coin::where('symbol', '=', $symbol)->first();
+        $coin = CryptoCoin::where('symbol', '=', $symbol)->first();
         if (!$coin) {
             throw new Error(sprintf('Coin with symbol %s not found', $symbol));
         }
