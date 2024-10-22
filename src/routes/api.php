@@ -23,3 +23,4 @@ Route::get('/', function() {
 });
 
 Route::get('/crypto-coins', [CoinsController::class, 'list']);
+Route::get('/crypto-coin-price', [CoinsController::class, 'getMostRecentPrice']);
