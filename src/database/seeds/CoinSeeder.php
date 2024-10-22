@@ -2,6 +2,7 @@
 
 use App\CryptoCoin;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class CoinSeeder extends Seeder
 {
@@ -12,6 +13,7 @@ class CoinSeeder extends Seeder
      */
     public function run()
     {
+        # Initial data with all coins that must be handled
         $data = [
             [
                 'api_id' => 'bitcoin',
@@ -124,7 +126,15 @@ class CoinSeeder extends Seeder
                 'name' => 'EOS',
             ],
         ];
+
+        # Disable FK constraints in order to truncate the table
+        Schema::disableForeignKeyConstraints();
+        # Truncate the table, this table's data will never change
         CryptoCoin::truncate();
+        # Reenable FK constraints
+        Schema::enableForeignKeyConstraints();
+
+        # Insert the initial data
         CryptoCoin::insert($data);
     }
 }
