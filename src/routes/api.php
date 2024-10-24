@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CoinsController;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +12,15 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::prefix('/v1')->group(function() {
+    Route::get('/', function () {
+        return 'v1';
+    });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::prefix('/crypto-coins')->group(function () {
+        Route::get('/', [CoinsController::class, 'list']);
+        Route::get('/current-price', [CoinsController::class, 'getMostRecentPrice']);
+        Route::get('/historical-price', [CoinsController::class, 'getHistoricalPrice']);
+        Route::get('/sync-prices', [CoinsController::class, 'syncPricesFromApi']);
+    });
 });
-
-Route::get('/', function() {
-    return  'OK';
-});
-
-Route::get('/crypto-coins', [CoinsController::class, 'list']);
-Route::get('/crypto-coin-price', [CoinsController::class, 'getMostRecentPrice']);
