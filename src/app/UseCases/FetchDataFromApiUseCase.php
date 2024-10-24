@@ -8,7 +8,7 @@ use App\Repositories\IApiCryptoCoinPricesRepository;
 class FetchDataFromApiUseCase
 {
     private $cryptoCoinsRepository;
-    private $cryptoCoinPricesRepository;
+    private $apiCryptoCoinPricesRepository;
 
     public function __construct(
         ICoinsRepository $cryptoCoinsRepository,
@@ -16,7 +16,7 @@ class FetchDataFromApiUseCase
     ) {
 
         $this->cryptoCoinsRepository = $cryptoCoinsRepository;
-        $this->cryptoCoinPricesRepository = $cryptoCoinPricesRepository;
+        $this->apiCryptoCoinPricesRepository = $cryptoCoinPricesRepository;
     }
 
     public function execute()
@@ -24,7 +24,7 @@ class FetchDataFromApiUseCase
         $data = [];
         $coins = $this->cryptoCoinsRepository->getAll();
         foreach ($coins as $coin) {
-            $data[] = $this->cryptoCoinPricesRepository->getMostRecentPrice($coin);
+            $data[] = $this->apiCryptoCoinPricesRepository->getMostRecentPrice($coin);
         }
 
         return $data;
