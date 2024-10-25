@@ -12,5 +12,5 @@ interface IApiCryptoCoinPricesRepository
      * @param CryptoCoin $cryptoCoin
      * @return CryptoCoinPrice
      */
-    public function getMostRecentPrice(CryptoCoin $cryptoCoin): CryptoCoinPrice;
+    public function getMostRecentPrice(CryptoCoin $cryptoCoin): ?CryptoCoinPrice;
 }

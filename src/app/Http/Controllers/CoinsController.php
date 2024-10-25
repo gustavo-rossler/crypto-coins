@@ -67,7 +67,9 @@ class CoinsController extends Controller
             $coinPriceResponse = new CryptoCoinPriceResponse();
             $coinPriceResponse->fillData($coin, $coinPrice);
 
-            return response()->json($coinPriceResponse);
+            return response()->json([
+                'data' => $coinPriceResponse,
+            ]);
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
@@ -98,7 +100,9 @@ class CoinsController extends Controller
             $coinPriceResponse = new CryptoCoinPriceResponse();
             $coinPriceResponse->fillData($coin, $coinPrice);
 
-            return response()->json($coinPriceResponse);
+            return response()->json([
+                'data' => $coinPriceResponse,
+            ]);
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),

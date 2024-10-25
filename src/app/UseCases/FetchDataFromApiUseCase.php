@@ -24,7 +24,10 @@ class FetchDataFromApiUseCase
         $data = [];
         $coins = $this->cryptoCoinsRepository->getAll();
         foreach ($coins as $coin) {
-            $data[] = $this->apiCryptoCoinPricesRepository->getMostRecentPrice($coin);
+            $coinPrice = $this->apiCryptoCoinPricesRepository->getMostRecentPrice($coin);
+            if ($coinPrice) {
+                $data[] = $coinPrice;
+            }
         }
 
         return $data;

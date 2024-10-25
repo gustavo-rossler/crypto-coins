@@ -30,7 +30,7 @@ class CoinGeckoApiCryptoCoinPricesRepository implements IApiCryptoCoinPricesRepo
         return $res->getBody();
     }
 
-    public function getMostRecentPrice(CryptoCoin $cryptoCoin): CryptoCoinPrice
+    public function getMostRecentPrice(CryptoCoin $cryptoCoin): ?CryptoCoinPrice
     {
         $endpoint = '/simple/price';
         $params = [
