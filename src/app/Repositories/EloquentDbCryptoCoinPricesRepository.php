@@ -15,8 +15,9 @@ class EloquentDbCryptoCoinPricesRepository implements IDbCryptoCoinPricesReposit
             ->orderBy('timestamp', 'desc')
             ->first();
         if (!$coinPrice) {
-            throw new \Error(
-                sprintf('No price found for %s', $cryptoCoin->symbol)
+            throw new ResourceNotFoundException(
+                sprintf('No prices found for %s', $cryptoCoin->symbol),
+                404
             );
         }
         return $coinPrice;
