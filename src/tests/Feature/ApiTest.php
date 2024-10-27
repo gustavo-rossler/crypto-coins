@@ -108,4 +108,30 @@ class ApiTest extends TestCase
                 ],
             ]);
     }
+
+    /**
+     * Test /api/v1/crypto-coins/current-price endpoint validation.
+     *
+     * @return void
+     */
+    public function testCurrentPriceEndpointValidation()
+    {
+        $response = $this->json('GET', '/api/v1/crypto-coins/current-price');
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors('coin');
+    }
+
+    /**
+     * Test /api/v1/crypto-coins/historical-price endpoint validation.
+     *
+     * @return void
+     */
+    public function testHistoricalPriceEndpointValidation()
+    {
+        $response = $this->json('GET', '/api/v1/crypto-coins/historical-price');
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['coin', 'datetime']);
+    }
 }
